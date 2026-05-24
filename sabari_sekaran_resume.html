@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabari Sekaran MU – Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-light: #000000;
+    --ink-muted: #000000;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-pale: #f0f4ff;
+    --rule: #dde2f0;
+    --bg: #ffffff;
+    --sidebar-bg: #f7f8fc;
+    --tag-bg: #e8edf8;
+    --tag-text: #2563eb;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8edf5;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 20px 10px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,40,0.13), 0 4px 16px rgba(0,0,40,0.08);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    color: white;
+    padding: 25px 30px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: rgba(37,99,235,0.18);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 320px; height: 160px;
+    background: rgba(37,99,235,0.10);
+    border-radius: 50%;
+  }
+  .header-inner { position: relative; z-index: 1; }
+
+  .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .title-badge {
+    display: inline-block;
+    margin-top: 6px;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .contact-row {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255,255,255,0.82);
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration: none;
+  }
+  .contact-item svg { opacity: 0.7; flex-shrink: 0; }
+
+  /* ── BODY LAYOUT ── */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--sidebar-bg);
+    padding: 20px 16px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1.5px solid var(--accent);
+    display: block;
+  }
+
+  .sidebar-section { margin-bottom: 30px; }
+
+  .skill-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin: 2px 2px 2px 0;
+  }
+
+  .mini-project {
+    font-size: 12px;
+    color: var(--ink-light);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }}
+  .mini-project:last-child { border-bottom: none; }
+  .mini-project::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .edu-block { }
+  .edu-years {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0px;
+  }
+  .edu-college {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+  .edu-degree {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    line-height: 1.3;
+    font-style: italic;
+  }
+
+  /* ── MAIN ── */
+  .main { padding: 20px 24px; }
+
+  .main-section { margin-bottom: 26px; }
+
+  .about-text {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* Timeline */
+  .experience-header {
+    background: var(--accent-pale);
+    border-left: 3px solid var(--accent);
+    padding: 6px 11px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 22px;
+  }
+  .experience-header span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 11px 13px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .project-card:hover {
+    box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+    border-color: #bfcfee;
+  }
+
+  .project-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .project-date {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    float: right;
+    margin-top: 0px;
+  }
+  .project-bullets {
+    margin-top: 12px;
+    padding-left: 0;
+    list-style: none;
+  }
+  .project-bullets li {
+    font-size: 11px;
+    color: var(--ink-light);
+    font-weight: 300;
+    padding: 1px 0 1px 12px;
+    position: relative;
+    line-height: 1.35;
+  }
+  .project-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  /* Download Button */
+  .download-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+  }
+  .download-btn:hover {
+    background: #1e40af;
+    box-shadow: 0 6px 16px rgba(37,99,235,0.4);
+    transform: translateY(-2px);
+  }
+  .download-btn:active {
+    transform: translateY(0);
+  }
+
+  @media print {
+    .download-btn { display: none !important; }
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .project-card:hover { box-shadow: none; }
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+<button class="download-btn" onclick="downloadResume()">⬇ Download PDF</button>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="name">Sabari Sekaran MU</div>
+      <div class="title-badge">Full Stack Developer</div>
+      <div class="contact-row">
+        <a class="contact-item" href="tel:+919345818959">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          +91-93458 18959
+        </a>
+        <a class="contact-item" href="mailto:sabarisekaran006@gmail.com">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          sabarisekaran006@gmail.com
+        </a>
+        <span class="contact-item">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Krishnagiri, Tamil Nadu
+        </span>
+        <a class="contact-item" href="https://www.linkedin.com/in/sabari-sekaran-mu-9238032a3/" target="_blank">
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><line x1="2" y1="9" x2="7" y2="9"/><line x1="4.5" y1="6" x2="4.51" y2="6"/></svg>
+          https://www.linkedin.com/in/sabari-sekaran-mu-9238032a3/
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="body-grid">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <span class="section-label">Technical Skills</span>
+        <div>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">XML</span>
+          <span class="skill-tag">React Native</span>
+          <span class="skill-tag">AWS EC2</span>
+          <span class="skill-tag">Block Box Testing</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="section-label">Mini Projects</span>
+        <div class="mini-project">Expense Tracker</div>
+        <div class="mini-project">QR Automation System</div>
+        <div class="mini-project">DOC Management System</div>
+        <div class="mini-project">Winforms Billing Software</div>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="section-label">Education</span>
+        <div class="edu-block">
+          <div class="edu-years">2023 – 2027</div>
+          <div class="edu-college">Nandha Engineering College</div>
+          <div class="edu-degree">B.Tech – Artificial Intelligence &amp; Data Science</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- About -->
+      <section class="main-section">
+        <span class="section-label">About</span>
+        <p class="about-text">
+          Detail-oriented front-end developer experienced in building responsive and user-friendly web applications using HTML, CSS, Tailwind CSS, React, and TypeScript. Skilled in creating clean interfaces and responsive layouts that deliver smooth user experiences across devices. Strong understanding of UI/UX principles, API integration, and modern full stack development practices. Focused on writing clean, maintainable code while continuously learning and improving development skills.
+        </p>
+      </section>
+
+      <!-- Experience -->
+      <section class="main-section">
+        <span class="section-label">Experience</span>
+        <div class="experience-header">
+          <span>Intern · AST Technology, Salem</span>
+        </div>
+
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <span class="project-date">Jul 2025</span>
+            <div class="project-name">Turf Booking Web App</div>
+            <ul class="project-bullets">
+              <li>Built a responsive frontend using React &amp; TypeScript, ensuring cross-device usability and accessibility.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Oct 2025</span>
+            <div class="project-name">Gym Management System</div>
+            <ul class="project-bullets">
+              <li>Built a responsive and accessible frontend using React &amp; TypeScript for consistent cross-device experience.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Nov 2025</span>
+            <div class="project-name">AC Waiting Hall Booking System <small style="font-weight:400;color:#000">(Railway Junction)</small></div>
+            <ul class="project-bullets">
+              <li>Developed a role-based AC waiting hall booking system (Admin) using React, TypeScript &amp; Tailwind with worker module built using XML.</li>
+              <li>Implemented real-time seat allocation, booking validation, and efficient record management.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Feb 2026</span>
+            <div class="project-name">Parking Management System</div>
+            <div style="font-weight:400;color:#000;font-size:11px;margin-top:2px;">(QR Based)</div>
+            <ul class="project-bullets">
+              <li>Developed a QR-based parking system using React Native with role-based access.</li>
+              <li>Built mobile apps and a React dashboard with real-time tracking via QR scanning.</li>
+              <li>Implemented C# APIs and deployed on AWS EC2 with secure authentication.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Mar 2026</span>
+            <div class="project-name">BCON Architecture Web App</div>
+            <ul class="project-bullets">
+              <li>Built a responsive company website using React to showcase services, projects, and contact details.</li>
+              <li>Improved user experience with clean UI design and optimized performance across devices.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Mar 2026</span>
+            <div class="project-name">Planora <small style="font-weight:400;color:#888">(Event Management System)</small></div>
+            <ul class="project-bullets">
+              <li>Developed with role-based access (Admin &amp; Coordinator) using React and backend APIs.</li>
+              <li>Implemented event creation, program management, and real-time data handling.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Apr 2025</span>
+            <div class="project-name">Plant Disease Detection</div>
+            <div style="font-weight:400;color:#888;font-size:11px;margin-top:2px;">(AI / Deep Learning)</div>
+            <ul class="project-bullets">
+              <li>Built a CNN-based classification model to detect plant leaf diseases from images.</li>
+              <li>Applied computer vision and deep learning using Python and TensorFlow.</li>
+            </ul>
+          </div>
+
+          <div class="project-card">
+            <span class="project-date">Jan 2026</span>
+            <div class="project-name">Luggage Management System</div>
+            <ul class="project-bullets">
+              <li>Developed a luggage management system with worker module using XML.</li>
+              <li>Implemented real-time tracking and efficient record management.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div><!-- end body-grid -->
+
+</div><!-- end page -->
+
+<script>
+function downloadResume() {
+  const element = document.querySelector('.page');
+  const opt = {
+    margin: 0,
+    filename: 'Sabari_Sekaran_Resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+}
+</script>
+</body>
+</html>

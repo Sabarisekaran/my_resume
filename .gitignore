@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Build outputs
+dist/
+build/
+out/
+*.tgz
+*.zip
+
+# Cache files
+.cache/
+.parcel-cache
+.eslintcache
+.stylelintcache
+*.cache
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+*.pem
+*.key
+
+# Generated files
+*.tmp
+.turbo/
+dist-ssr/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Electron build outputs
+dist_electron/
+release/
+
+# Platform-specific line endings (optional but good for consistency)
+*.bat
+*.sh -text
